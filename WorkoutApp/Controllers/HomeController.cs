@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using WorkoutApiClient;
+using WorkoutApiClient.Model;
 using WorkoutApp.Models;
 
 namespace WorkoutApp.Controllers
 {
     public class HomeController : Controller
     {
+        public const string BaseWorkoutApiUrl = "https://wger.de/api/v2";
+
         public IActionResult Index()
         {
-            return View();
+            string exerciseCategoryUrl = $"{BaseWorkoutApiUrl}/exercisecategory/?format=json"; //https://wger.de/api/v2/exercisecategory/?format=json
+
+            string jsonReponse = WorkoutApiHelper.GetJsonStringFromApi(exerciseCategoryUrl);
+
+            ExerciseCategory exerciseCategory = ExerciseCategory.FromJson(jsonReponse);
+
+            var homeViewModel = new HomeViewModel { ExerciseCategoryList = exerciseCategory };
+
+            return View(homeViewModel);
         }
 
         public IActionResult Privacy()
