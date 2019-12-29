@@ -4,7 +4,7 @@ namespace WorkoutApiClient
 {
     public class WorkoutApiHelper
     {
-        public static string GetJsonStringFromNhsApi(string apiUrl)
+        public static string GetJsonStringFromApi(string apiUrl)
         {
             const string apiKey = "7dc7a418ef0ec9d2503371ff5a0816ae030f5f4e";
 
