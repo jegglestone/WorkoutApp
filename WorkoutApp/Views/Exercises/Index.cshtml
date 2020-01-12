@@ -1,6 +1,33 @@
+
 ﻿
+
+﻿@model ExercisesViewModel
+
 @{
     ViewData["Title"] = "Index";
 }
 
+
 <h1>Exercises by category</h1>
+
+
+<div class="text-center">
+    <h1 class="display-4">Exercises by category</h1>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h3>Exercises by body area</h3>
+        @foreach(var exercise in Model.ExercisesList.Results)
+        {
+            <p>
+                <a asp-controller="Exercises"
+                   asp-action="Index"
+                   asp-route-exerciseCategoryId="@exercise.ExerciseId">
+                    @exercise.ExerciseName
+                </a>
+            </p>
+        }
+    </div>
+</div>
+
