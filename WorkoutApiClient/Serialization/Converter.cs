@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Converters;
 using System.Globalization;
 
-namespace WorkoutApiClient.Model
+namespace WorkoutApiClient.Serialization
 {
     internal static class Converter
     {

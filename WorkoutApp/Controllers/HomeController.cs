@@ -12,7 +12,7 @@ namespace WorkoutApp.Controllers
 
         public IActionResult Index()
         {
-            string exerciseCategoryUrl = $"{BaseWorkoutApiUrl}/exercisecategory/?format=json"; //https://wger.de/api/v2/exercisecategory/?format=json
+            string exerciseCategoryUrl = $"{BaseWorkoutApiUrl}/exercisecategory/?format=json";
 
             string jsonReponse = WorkoutApiHelper.GetJsonStringFromApi(exerciseCategoryUrl);
 

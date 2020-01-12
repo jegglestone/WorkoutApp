@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using WorkoutApiClient.Serialization;
 
 namespace WorkoutApiClient.Model
 {
