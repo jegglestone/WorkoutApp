@@ -1,6 +1,3 @@
-
-﻿
-
 ﻿@model ExercisesViewModel
 
 @{
@@ -8,16 +5,15 @@
 }
 
 
-<h1>Exercises by category</h1>
+
 
 
 <div class="text-center">
-    <h1 class="display-4">Exercises by category</h1>
+    <h1 class="display-4">Exercises for category</h1>
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <h3>Exercises by body area</h3>
+    <div class="col-12 text-center">
         @foreach(var exercise in Model.ExercisesList.Results)
         {
             <p>

@@ -5,22 +5,11 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
-
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
-=======
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8">
-      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
-      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
-    </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
->>>>>>> 0d60381... Initial check-in of module WorkoutApp
   </ItemGroup>
-
 
   <ItemGroup>
     <ProjectReference Include="..\WorkoutApiClient\WorkoutApiClient.csproj" />

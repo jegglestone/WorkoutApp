@@ -8,11 +8,9 @@ namespace WorkoutApp.Controllers
 {
     public class HomeController : Controller
     {
-        public const string BaseWorkoutApiUrl = "https://wger.de/api/v2";
-
         public IActionResult Index()
         {
-            string exerciseCategoryUrl = $"{BaseWorkoutApiUrl}/exercisecategory/?format=json";
+            string exerciseCategoryUrl = $"{Constants.BaseWorkoutApiUrl}/exercisecategory/?format=json&language=2";
 
             string jsonReponse = WorkoutApiHelper.GetJsonStringFromApi(exerciseCategoryUrl);
 
