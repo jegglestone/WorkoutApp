@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using WorkoutApiClient.Serialization;
 
 namespace WorkoutApiClient.Model
 {
@@ -33,7 +34,7 @@ namespace WorkoutApiClient.Model
 
     public partial class ExerciseComments
     {
-        public static ExerciseComments FromJson(string json) => JsonConvert.DeserializeObject<ExerciseComments>(json, Model.Converter.Settings);
+        public static ExerciseComments FromJson(string json) => JsonConvert.DeserializeObject<ExerciseComments>(json, Converter.Settings);
     }
 }
 
