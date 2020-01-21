@@ -16,13 +16,13 @@ namespace WorkoutApiClient.Model
         public object Previous { get; set; }
 
         [JsonProperty("results")]
-        public List<Result> Results { get; set; }
+        public List<CategoryResult> Results { get; set; }
     }
 
-    public partial class Result
+    public class CategoryResult
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public long CategoryId { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }

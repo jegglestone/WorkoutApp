@@ -20,10 +20,10 @@ namespace WorkoutApiClient.Model
         public List<ExerciseComment> Results { get; set; }
     }
 
-    public partial class ExerciseComment
+    public class ExerciseComment
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public long CommentId { get; set; }
 
         [JsonProperty("comment")]
         public string Comment { get; set; }

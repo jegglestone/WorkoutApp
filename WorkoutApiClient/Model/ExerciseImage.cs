@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
-using WorkoutApiClient.Serialization;
+using System.Globalization;
 
 namespace WorkoutApiClient.Model
 {
@@ -23,7 +24,7 @@ namespace WorkoutApiClient.Model
     public partial class Result
     {
         [JsonProperty("id")]
-        public int ImageId { get; set; }
+        public long ImageId { get; set; }
 
         [JsonProperty("license_author")]
         public LicenseAuthor LicenseAuthor { get; set; }
@@ -49,7 +50,71 @@ namespace WorkoutApiClient.Model
 
     public partial class ExerciseImage
     {
-        public static ExerciseImage FromJson(string json) => JsonConvert.DeserializeObject<ExerciseImage>(json, Converter.Settings);
+        public static ExerciseImage FromJson(string json) => JsonConvert.DeserializeObject<ExerciseImage>(json, ImageConverter.Settings);
+    }
+
+    public static class Serialize
+    {
+        public static string ToJson(this ExerciseImage self) => JsonConvert.SerializeObject(self, ImageConverter.Settings);
+    }
+
+    internal static class ImageConverter
+    {
+        public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+            DateParseHandling = DateParseHandling.None,
+            Converters =
+            {
+                LicenseAuthorConverter.Singleton,
+                new IsoDateTimeConverter { DateTimeStyles = DateTimeStyles.AssumeUniversal }
+            },
+        };
+    }
+
+    internal class LicenseAuthorConverter : JsonConverter
+    {
+        public override bool CanConvert(Type t) => t == typeof(LicenseAuthor) || t == typeof(LicenseAuthor?);
+
+        public override object ReadJson(JsonReader reader, Type t, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null) return null;
+            var value = serializer.Deserialize<string>(reader);
+            switch (value)
+            {
+                case "":
+                    return LicenseAuthor.Empty;
+                case "Everkinetic":
+                    return LicenseAuthor.Everkinetic;
+                default: return LicenseAuthor.Empty;
+            }
+            //throw new Exception("Cannot unmarshal type LicenseAuthor");
+        }
+
+        public override void WriteJson(JsonWriter writer, object untypedValue, JsonSerializer serializer)
+        {
+            if (untypedValue == null)
+            {
+                serializer.Serialize(writer, null);
+                return;
+            }
+            var value = (LicenseAuthor)untypedValue;
+            switch (value)
+            {
+                case LicenseAuthor.Empty:
+                    serializer.Serialize(writer, "");
+                    return;
+                case LicenseAuthor.Everkinetic:
+                    serializer.Serialize(writer, "Everkinetic");
+                    return;
+                default:
+                    serializer.Serialize(writer, "");
+                    return;
+            }
+            //throw new Exception("Cannot marshal type LicenseAuthor");
+        }
+
+        public static readonly LicenseAuthorConverter Singleton = new LicenseAuthorConverter();
     }
 
     internal class ParseStringConverter : JsonConverter
@@ -65,7 +130,6 @@ namespace WorkoutApiClient.Model
             {
                 return l;
             }
-
             throw new Exception("Cannot unmarshal type long");
         }
 
@@ -76,10 +140,11 @@ namespace WorkoutApiClient.Model
                 serializer.Serialize(writer, null);
                 return;
             }
-
-            var value = (long) untypedValue;
+            var value = (long)untypedValue;
             serializer.Serialize(writer, value.ToString());
             return;
         }
+
+        public static readonly ParseStringConverter Singleton = new ParseStringConverter();
     }
 }

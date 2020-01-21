@@ -4,10 +4,6 @@
     ViewData["Title"] = "Index";
 }
 
-
-
-
-
 <div class="text-center">
     <h1 class="display-4">Exercises for category</h1>
 </div>
@@ -19,7 +15,7 @@
             <p>
                 <a asp-controller="Exercises"
                    asp-action="Index"
-                   asp-route-exerciseCategoryId="@exercise.ExerciseId">
+                   asp-route-exerciseId="@exercise.ExerciseId">
                     @exercise.ExerciseName
                 </a>
             </p>
