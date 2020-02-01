@@ -6,7 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
   </ItemGroup>
@@ -15,4 +18,18 @@
     <ProjectReference Include="..\WorkoutApiClient\WorkoutApiClient.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\DetailController.cs" />
+    <Compile Remove="Views\ExerciseComment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Views\ExerciseComment\Index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\ExerciseComment\EmptyCSSFile.cshtml" />
+    <Content Remove="Views\ExerciseComment\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\ExerciseComment\" />
+  </ItemGroup>
 </Project>

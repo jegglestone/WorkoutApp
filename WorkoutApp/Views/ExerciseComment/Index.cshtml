@@ -1,0 +1,24 @@
+﻿@model CommentViewModel
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Comment for Exercise</h1>
+</div>
+
+<div class="row">
+    <div class="col-12 text-center">
+        @foreach(var exerciseComment in Model.CommentsList.Results)
+        {
+            <p>
+                <a asp-controller="Comment"
+                   asp-action="Index"
+                   asp-route-exerciseCommentId="@exerciseComment.CommentId">
+                    @exerciseComment.Comment
+                </a>
+            </p>
+        }
+    </div>
+</div>
