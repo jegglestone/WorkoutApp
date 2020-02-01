@@ -5,7 +5,7 @@ using WorkoutApp.Models;
 
 namespace WorkoutApp.Controllers
 {
-    public class CommentController : Controller
+    public class CommentsController : Controller
     {
         public IActionResult Index(int exerciseId)
         {

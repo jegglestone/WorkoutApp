@@ -23,13 +23,9 @@
     <Compile Remove="Views\ExerciseComment.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\ExerciseComment\Index.html" />
+    <None Remove="Views\Comments\Index.html" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="Views\ExerciseComment\EmptyCSSFile.cshtml" />
-    <Content Remove="Views\ExerciseComment\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ExerciseComment\" />
+    <Content Remove="Views\Comments\EmptyCSSFile.cshtml" />
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@
         @foreach(var exercise in Model.ExercisesList.Results)
         {
             <p>
-                <a asp-controller="Exercises"
+                <a asp-controller="Comments"
                    asp-action="Index"
                    asp-route-exerciseId="@exercise.ExerciseId">
                     @exercise.ExerciseName
