@@ -16,3 +16,10 @@
         }
     </div>
 </div>
+
+<div class="picture">
+    @foreach(var exerciseImage in Model.ImageList.Results)
+        {
+            <p>@exerciseImage.Image</p>
+        }
+</div>
